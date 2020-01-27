@@ -69,6 +69,8 @@ github_repo: "https://github.com/RyoJerryYu/RyoJerryYu.github.io.git" # you code
 - `url`, `baseurl`: 分别为博客域名地址与其下路径。如不想将博客直接架在根路径下，需要对`baseurl`进行设置。
 - `github_repo`: 博客所在的GitHub仓库。
 
+---
+
 
 ```yml
 # SNS settings
@@ -82,6 +84,8 @@ twitter_username:  ryo_okami
 分别为各个社交网站上的账号信息，以供在侧边栏中直接跳转到对应的页面。可通过在行首添加或删除`#`进行注释或取消注释。
 
 从[原仓库][origin_repo]中直接fork出来时，社交网站的图标可能会有[无法显示的问题](https://github.com/Huxpro/huxblog-boilerplate/issues/17)，其解决方法在[后面](#FixSNS)介绍。
+
+---
 
 
 ```yml
@@ -105,6 +109,8 @@ gitalk:
 ```
 分别为各种评论系统。均未开启。
 
+---
+
 
 ```yml
 # Analytics settings
@@ -116,6 +122,8 @@ ga_domain: auto
 ```
 分别为百度与谷歌的网站统计。我只启用了Google Analytics。可先到[Google Marketing Platform](https://marketingplatform.google.com/about/)注册，开启Google Analytics。在`设置`->`媒体资源设置`中获得Track ID，并填入`ga_track_id`中。
 
+---
+
 
 ```yml
 # Sidebar settings
@@ -126,6 +134,8 @@ sidebar-avatar: /img/avatar-ryo.png      # use absolute URL, seeing it's used in
 `sidebar`: 是否开启侧边栏，为`true`或`false`。
 `sidebar-about-description`: 显示在侧边栏中的个人简介。
 `sidebar-avatar`: 显示在侧边栏中的头像。
+
+---
 
 
 ```yml
