@@ -1,22 +1,23 @@
 # Site settings
-title: Your Blog
-SEOTitle: 你的博客 | Your Blog
+title: Ryo's Blog
+SEOTitle: 阿亮仔的博客 | 亮のブログ | Ryo's Blog
 header-img: img/home-bg.jpg
-email: huxpro@gmail.com
-description: ""
-keyword: ""
-url: "http://huangxuan.me"              # your host, for absolute URL
-baseurl: "/huxblog-boilerplate"         # for example, '/blog' if your blog hosted on 'host/blog'
+email: qq250707340@163.com
+description: "君の夢が　叶うのは　誰かのおかげじゃないぜ。"
+keyword: "Ryo, Blog, 阿亮仔, りょう, 博客, ブログ, Algorithm, Unity, Python, C-Sharp"
+url: "http://RyoJerryYu.github.io"              # your host, for absolute URL
+baseurl: ""         # for example, '/blog' if your blog hosted on 'host/blog'
+github_repo: "https://github.com/RyoJerryYu/RyoJerryYu.github.io.git" # you code repository
 
 
 
 # SNS settings
 RSS: false
-weibo_username:     huxpro
-zhihu_username:     huxpro
-github_username:    huxpro
-#twitter_username:  huxpro
-facebook_username:  huxpro
+# weibo_username:     huxpro
+# zhihu_username:     huxpro
+github_username:    RyoJerryYu
+twitter_username:  ryo_okami
+# facebook_username:  huxpro
 
 
 
@@ -50,51 +51,63 @@ kramdown:
 #disqus_username: _your_disqus_short_name_
 
 # Duoshuo settings
-duoshuo_username: huxblog
+# duoshuo_username: huxblog
 # Share component is depend on Comment so we can NOT use share only.
-duoshuo_share: true                     # set to false if you want to use Comment without Sharing
+# duoshuo_share: true                     # set to false if you want to use Comment without Sharing
+
+# Gitalk
+gitalk:
+    enable: false    #是否开启Gitalk评论
+    clientID: f2c84e7629bb1446c1a4                            #生成的clientID
+    clientSecret: ca6d6139d1e1b8c43f8b2e19492ddcac8b322d0d    #生成的clientSecret
+    repo: qiubaiying.github.io    #仓库名称
+    owner: qiubaiying    #github用户名
+    admin: qiubaiying
+    distractionFreeMode: true #是否启用类似FB的阴影遮罩  
 
 
 
 
 # Analytics settings
 # Baidu Analytics
-ba_track_id: 4cc1f2d8f3067386cc5cdb626a202900
+# ba_track_id: 4cc1f2d8f3067386cc5cdb626a202900
 # Google Analytics
-ga_track_id: 'UA-49627206-1'            # Format: UA-xxxxxx-xx
-ga_domain: huangxuan.me
+ga_track_id: 'UA-156933256-1'            # Format: UA-xxxxxx-xx
+ga_domain: auto
 
 
 
 # Sidebar settings
 sidebar: true                           # whether or not using Sidebar.
-sidebar-about-description: "写写代码，做做设计，看看产品。世界那么大，多玩玩看看。"
-sidebar-avatar: /img/avatar-hux.jpg      # use absolute URL, seeing it's used in both `/` and `/about/`
+sidebar-about-description: "记录平时遇到的问题，以及对应的解决方法。偶尔上传些许宅活或是娱乐方面的记录。"
+sidebar-avatar: /img/avatar-ryo.jpg      # use absolute URL, seeing it's used in both `/` and `/about/`
 
 
 
 # Featured Tags
 featured-tags: true                     # whether or not using Feature-Tags
-featured-condition-size: 1              # A tag will be featured if the size of it is more than this condition value
+featured-condition-size: 2              # A tag will be featured if the size of it is more than this condition value
 
+
+
+# Progressive Web Apps
+chrome-tab-theme-color: "#000000"
+service-worker: true
 
 
 # Friends
 friends: [
     {
-        title: "Hux Blog",
-        href: "http://huangxuan.me"
+        title: "推しのツイッター",
+        href: "https://twitter.com/ikasumi_zzz"
     },{
-        title: "Foo",
-        href: "#"
+        title: "推しのチャンネル",
+        href: "https://www.youtube.com/channel/UCLpYMk5h1bq8_GAFVBgXhPQ?sub_confirmation=1"
     },{
-        title: "Bar",
-        href: "#"
+        title: "これはグーグル",
+        href: "https://apple.com"
     },{
-        title: "Example Friends",
-        href: "#"
-    },{
-        title: "It helps SEO",
-        href: "#"
+        title: "突然のガンダムＸ",
+        href: "https://ja.wikipedia.org/wiki/%E6%A9%9F%E5%8B%95%E6%96%B0%E4%B8%96%E7%B4%80%E3%82%AC%E3%83%B3%E3%83%80%E3%83%A0X"
     }
 ]
