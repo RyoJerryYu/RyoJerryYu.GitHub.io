@@ -199,9 +199,9 @@ README.md为Github仓库的介绍，可以在README.md中写上这个博客主�
 
 <p id = "FixSNS"></p>
 
-#### 修复
+#### 修复SNS链接不正常显示
 
-修复上述错误后，稍等即可正常打开网页。但是，我们在`_config.yml`中设置好的SNS连接并没有在侧边栏以及网页底部正常显示。如原仓库中的[issue#17](https://github.com/Huxpro/huxblog-boilerplate/issues/17)所示，原因是gitpage必须通过https访问bootcss.com等的cdn。
+修复上述错误后，稍等即可正常打开网页。但是，我们在`_config.yml`中设置好的SNS链接并没有在侧边栏以及网页底部正常显示。如原仓库中的[issue#17](https://github.com/Huxpro/huxblog-boilerplate/issues/17)所示，原因是gitpage必须通过https访问bootcss.com等的cdn。
 
 此处采用原仓库[pull request#21](https://github.com/Huxpro/huxblog-boilerplate/pull/21)的方法，修改`_includes/head.html`, `_includes/footer.html`, `_layouts/keynote.html`, `_layouts/post.html`文件，将其中`http`修改为`https`。
 
