@@ -1,0 +1,45 @@
+{
+	"Post head":{
+		"scope": "markdown",
+		"prefix": "head, post",
+		"body": [
+			"---",
+			"layout:     post",
+			"title:      \"${1:Title}\"",
+			"subtitle:   \"${2:Subtitle}\"",
+			"date:       ${3:$CURRENT_YEAR-$CURRENT_MONTH-$CURRENT_DATE $CURRENT_HOUR:$CURRENT_MINUTE:$CURRENT_SECOND}",
+			//automatically input current time with format as 2020-01-28 18:00:00
+			"author:     \"${4:Ryo}\"",
+			"header-img: \"img/${5:post-bg-default.jpg}\"",
+			"tags:",
+			"    - ${6:杂技}",
+			"---",
+			"$0"
+		],
+		"description": "Posts' head"
+	},
+	"Date":{
+		"scope": "markdown",
+		"prefix": "date, now",
+		"body": [
+			"${1:$CURRENT_YEAR-$CURRENT_MONTH-$CURRENT_DATE}$0",
+		],
+		"description": "DATE of now with a format as 2020-01-28"
+	},
+	"Time":{
+		"scope": "markdown",
+		"prefix": "time, now",
+		"body": [
+			"${1:$CURRENT_HOUR:$CURRENT_MINUTE:$CURRENT_SECOND}$0",
+		],
+		"description": "TIME of now with a format as 18:00:00"
+	},
+	"DateTime":{
+		"scope": "markdown",
+		"prefix": "datetime, now",
+		"body": [
+			"${1:$CURRENT_YEAR-$CURRENT_MONTH-$CURRENT_DATE $CURRENT_HOUR:$CURRENT_MINUTE:$CURRENT_SECOND}$0",
+		],
+		"description": "DATETIME of now with a format as 2020-01-28 18:00:00"
+	},
+}
