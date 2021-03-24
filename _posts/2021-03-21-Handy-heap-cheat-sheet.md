@@ -297,3 +297,185 @@ def pop(self)->T:
 注意入堆与出堆操作都要保证堆的大小会相应变化。
 
 ### 堆初始化
+
+堆的初始化采用堆合并策略，从堆尾到堆顶逐个元素做下沉操作。
+
+```python
+def __init__(self, A:List[T]=[], 
+             fCompare:Callable[[T,T],bool]=lambda a,b:a>b
+             ) -> None:
+    '''堆初始化
+
+    :param A: 在数组A上进行初始化
+    :param fCompare: 比较函数，对堆中节点p与子节点c，有fCompare(p,c)==True
+    '''
+    self.A = A
+    self.fCompare = fCompare
+    for i in reversed(range(len(A))):
+        self.sinkDown(i)
+```
+
+## 整体代码
+
+### 堆的整体实现
+
+综上，堆的整体代码实现如下：
+
+```python
+from typing import Any, Callable, Generic, List, TypeVar
+
+T = TypeVar("T")
+
+def lfChildOf(i:int):
+    return (i + 1) << 1 - 1
+
+def rtChildOf(i:int):
+    return (i + 1) << 1
+
+def parentOf(i:int):
+    return (i - 1) >> 1
+
+class Heap(Generic[T]):
+    '''堆结构
+
+    有两个成员：
+    self.A: List[T] # 堆内元素集合，元素类型为T，储存为数组
+    self.fCompare: Callable[[T,T],bool] # 比较函数
+    
+    下面假设堆为大顶堆
+    即有self.fCompare = lambda a,b: a>b
+    '''
+    def __init__(self, A:List[T]=[], 
+                 fCompare:Callable[[T,T],bool]=lambda a,b:a>b
+                 ) -> None:
+        '''堆初始化
+
+        :param A: 在数组A上进行初始化
+        :param fCompare: 比较函数，对堆中节点p与子节点c，有fCompare(p,c)==True
+        '''
+        self.A = A
+        self.fCompare = fCompare
+        for i in reversed(range(len(A))):
+            self.sinkDown(i)
+    
+    def size(self):
+        '''返回堆大小
+        '''
+        return len(self.A)
+    
+    def top(self):
+        '''返回堆顶
+        '''
+        return self.A[0]
+    
+    def sinkDown(self, i:int):
+        '''下沉操作
+
+        对下标为i的元素递归地进行下沉操作
+        直到该元素大于其两个子节点或该元素下沉到叶子节点
+        '''
+        lc = lfChildOf(i)
+        rc = rtChildOf(i)
+
+        # 比较元素i与其两个子节点，获取三个元素中存在且最大的元素
+        larger = i
+        if lc < self.size() and self.fCompare(self.A[lc], self.A[larger]):
+            larger = lc
+        if rc < self.size() and self.fCompare(self.A[rc], self.A[larger]):
+            larger = rc
+        
+        # 当元素i大于其两个子节点时符合堆结构，结束递归
+        # 当元素i下沉到叶子节点时，左右子节点不存在，也会在此结束递归
+        if larger == i:
+            return
+        
+        # 元素i小于其中一个子节点，交换i与较大子节点并继续下沉
+        self.A[larger], self.A[i] = self.A[i], self.A[larger]
+        self.sinkDown(larger)
+
+    def floatUp(self, i:int):
+        '''上浮操作
+
+        对下标为i的元素递归地进行上浮操作
+        直到该元素小于其父节点或该元素上浮到根节点
+        '''
+        # 元素i上浮到根节点时结束递归
+        if i <= 0:
+            return
+        
+        # 当元素i小于其父节点时符合堆结构，结束递归
+        pr = parentOf(i)
+        if self.fCompare(self.A[pr], self.A[i]):
+            return
+        
+        # 元素i大于其父节点，交换i与其父节点并继续上浮
+        self.A[pr], self.A[i] = self.A[i], self.A[pr]
+        self.floatUp(pr)
+    
+    def insert(self, v:T):
+        '''入堆
+        '''
+        # 将元素加到堆尾并做上浮操作
+        self.A.append(v)
+        self.floatUp(len(self.A) - 1)
+
+    def pop(self)->T:
+        '''出堆
+        '''
+        # 取出堆顶元素
+        res = self.A[0]
+
+        # 将堆尾元素填到堆顶并做下沉操作
+        self.A[0] = self.A[len(self.A) - 1]
+        self.A.pop()
+        self.sinkDown(0)
+
+        return res
+```
+
+### 单元测试
+
+入堆、出堆等操作的简单单元测试如下：
+
+```python
+import pytest
+import heap
+
+@pytest.fixture
+def initHeap():
+    return heap.Heap([1,3,4,7,2,6,5,9,0,8], 
+                     lambda a,b:a>b)
+
+class Test_TestHeap:
+    def test_init_notNull(self, initHeap:heap.Heap):
+        assert initHeap.size() == 10
+        assert initHeap.top() == 9
+    
+    def test_insert_notTop(self, initHeap:heap.Heap):
+        initHeap.insert(6)
+        assert initHeap.size() == 11
+        assert initHeap.top() == 9
+    
+    def test_insert_top(self, initHeap:heap.Heap):
+        initHeap.insert(10)
+        assert initHeap.size() == 11
+        assert initHeap.top() == 10
+    
+    def test_pop(self, initHeap:heap.Heap):
+        p = initHeap.pop()
+        assert p == 9
+        assert initHeap.size() == 9
+        assert initHeap.top() == 8
+```
+
+# 关于堆排序
+
+算法竞赛中除了原生使用堆结构以外，还有一个使用到堆的地方——堆排序。堆排序有原地排序、最坏时间复杂度为$O(nlogn)$等优秀的性质，是比较常用的一个排序算法。
+
+然而，手写堆排序要注意的地方与手写堆结构有比较大的不同。堆排序时要注意的点如下：
+
+1. 堆排序时一般要求在给入数组上原地排序，不需要内部维护一个数组结构，反之，需要记录堆结构的大小。
+2. 堆结构一般占用数组前端，因此从小到大排序时，有序部分从数组末尾开始扩张，建立的堆为大顶堆。
+3. 堆排序只需要建堆与出堆操作，因此只需要实现下沉操作。
+
+关于堆排序的具体讨论，有机会的话我会另外写一篇来讲解。
