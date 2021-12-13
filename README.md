@@ -14,3 +14,7 @@
 #### 2020-01-29
 
 添加VScode的snippets设置文件，使用VScode编辑markdown文件时可以通过输入`head`或`post`前缀快速添加文章头的yml代码块。同时可以通过前缀快速输入当前的时间或日期。
+
+#### 2021-12-13
+
+准备转移到 https://github.com/RyoJerryYu/blog ，此处作为主页使用。
